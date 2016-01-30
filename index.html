@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div>
+    <h1>Schedule Database</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>League</th>
+                <th>Away Team</th>
+                <th>Home Team</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: matchList">
+            <tr>
+                <td>
+                    <input type="datetime-local" data-bind="value: date">
+                </td>
+                <td>
+                    <select data-bind="options: $root.leagues, value: league, optionsText: 'name'"></select>
+                </td>
+                <td>
+                    <select data-bind="options: teamList, value: awayTeam, optionsText: 'name'"></select>
+                </td>
+                <td>
+                    <select data-bind="options: teamList, value: homeTeam, optionsText: 'name'"></select>
+                </td>
+                <td data-bind="visible: status">
+                    OK!
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button data-bind="click: addMatch()">Add match</button>
+</div>
+
+<div>
+    <h1>Data output</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>League</th>
+            <th>Away Team</th>
+            <th>Home Team</th>
+        </tr>
+        </thead>
+        <tbody data-bind="foreach: matchList">
+        <tr>
+            <td data-bind="text: date()">
+            </td>
+            <td data-bind="text: league().displayName">
+            </td>
+            <td data-bind="text: awayTeam().shortName">
+            </td>
+            <td data-bind="text: homeTeam().shortName">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="js/lib/knockout-3.2.0.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
